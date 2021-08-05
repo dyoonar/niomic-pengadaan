@@ -105,13 +105,15 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach($pengadaan as $pengadaan)
                     <tr>
-                      <td>183</td>
-                      <td>John Doe</td>
-                      <td>11-7-2014</td>
-                      <td><span class="tag tag-success">Approved</span></td>
+                      <td>{{$pengadaan->nama_pengadaan}}</td>
+                      <td><a target="_blank" href="{{$pengadaan->deskripsi}}" ><button class="btn-primary">Lihat Detail</button></a></td>
+                      <td style="width:20%;"><img style="width:70%;" src="{{asset(Storage::url($pengadaan->gambar))}}" alt=""></td>
+                      <td><span class="tag tag-success">{{number_format($pengadaan->anggaran,0,",",",")}}</span></td>
                       <td></td>
                     </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>
