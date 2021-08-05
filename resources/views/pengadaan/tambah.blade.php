@@ -26,8 +26,8 @@
                   </div>
                   <div class="form-group">
                     <!-- <label for="exampleInputEmail1">Anggaran</label> -->
-                    <label>Anggaran: <input type="" class="" disable style="border:none; background-color: white; color: black;"></label>
-                    <input type="text" class="form-control" id="anggaran" name="anggaran" placeholder="Masukan Anggaran">
+                    <label>Anggaran: <input type="" class="labelRp" disable style="border:none; background-color: white; color: black;"></label>
+                    <input type="text" class="form-control" id="anggaran" name="anggaran" placeholder="Masukan Anggaran" onkeyup="currency()">
                   </div>
                 </div>
                 <!-- /.card-body -->
