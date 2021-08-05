@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Encryption\DecryptException;
 
 use App\M_Admin;
+use App\M_Pengadaan;
 
 class Pengadaan extends Controller
 {
@@ -19,6 +20,37 @@ class Pengadaan extends Controller
         if($tokenDb > 0){
             $data['token'] = $token;
             return view('pengadaan.list', $data);
+        }else{
+            return redirect('/masukAdmin')->with('gagal','Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');
+        }
+    }
+
+    public function tambahPengadaan(Request $request){
+        $token = Session::get('token');
+        $tokenDb = M_Admin::where('token', $token)->count();
+        if($tokenDb > 0){
+            $this->validate($request,
+            [
+                'nama_pengadaan' => 'required',
+                'deskripsi' => 'required',
+                'gambar' => 'required|image|mimes:jpg,JPG,png,PNG,jpeg,JPEG|max:10000',
+                'anggaran' => 'required',
+            ]
+            );
+            $path = $request->file('gambar')->store('public/gambar');
+            if(M_Pengadaan::create(
+                [
+                    "nama_pengadaan" => $request->nama_pengadaan,
+                    "deskripsi" => $request->deskripsi,
+                    "gambar" => $path,
+                    "anggaran" => $request->anggaran
+                ]
+            )){
+                return redirect('/listPengadaan')->with('berhasil','Data Berhasil di Simpan');
+            }else{
+                return redirect('/listPengadaan')->with('gagal','Data Gagal di Simpan');
+            }
+
         }else{
             return redirect('/masukAdmin')->with('gagal','Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');
         }

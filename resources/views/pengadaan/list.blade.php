@@ -11,6 +11,9 @@
   <link rel="stylesheet" href="{{asset('adminLTE/plugins/fontawesome-free/css/all.min.css')}}">
   <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('adminLTE/dist/css/adminlte.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminLTE/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
+  <link rel="stylesheet" href="{{asset('adminLTE/plugins/toastr/toastr.min.css')}}">
+
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -139,6 +142,10 @@
 <script src="{{asset('adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('adminLTE/dist/js/adminlte.min.js')}}"></script>
+<!-- SweetAlert2 -->
+<script src="{{asset('adminLTE/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+<!-- Toastr -->
+<script src="{{asset('adminLTE/plugins/toastr/toastr.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <!-- <script src="{{asset('adminLTE/dist/js/demo.js')}}"></script> -->
 
@@ -166,6 +173,33 @@
    rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
    return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
  }
+ $(function() {
+    var Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000
+    });
+    @if(\Session::has('berhasil'))
+    Toast.fire({
+         icon: 'success',
+         title: '{{Session::get('berhasil')}}'
+       })
+    @endif
+    @if(\Session::has('gagal'))
+     Toast.fire({
+        icon: 'error',
+        title: '{{Session::get('gagal')}}'
+      })
+    @endif
+    @if(count($errors) > 0)
+      Toast.fire({
+          icon: 'error',
+          title: '<ul>@foreach($errors->all() as $error)<li>{{$error}}</li>@endforeach</ul>'
+        })
+    @endif
+  }
+  );
 </script>
 
 </body>
