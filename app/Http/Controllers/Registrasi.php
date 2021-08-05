@@ -7,11 +7,20 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use App\M_Suplier;
 use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Session;
 
 class Registrasi extends Controller
 {
     public function index(){
-        return view('registrasi.registrasi');
+        $token = Session::get('token');
+        $tokenDb = M_Suplier::where('token', $token)-> count();
+        If($tokenDb > 0){
+            $data['token'] = $token;
+
+        }else{
+            $data['token'] = "kosong";
+        }
+        return view('registrasi.registrasi', $data);
     }
     
     public function registrasi(Request $request){
