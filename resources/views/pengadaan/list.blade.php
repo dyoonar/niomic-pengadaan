@@ -94,7 +94,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
-                <table class="table table-hover text-nowrap">
+                <table style="text-align: center;" class="table table-hover text-nowrap">
                   <thead>
                     <tr>
                       <th>Nama Pengadaan</th>
@@ -109,7 +109,10 @@
                     <tr>
                       <td>{{$pengadaan->nama_pengadaan}}</td>
                       <td><a target="_blank" href="{{$pengadaan->deskripsi}}" ><button class="btn-primary">Lihat Detail</button></a></td>
-                      <td style="width:20%;"><img style="width:70%;" src="{{asset(Storage::url($pengadaan->gambar))}}" alt=""></td>
+                      <td style="width:20%;"><img style="width:70%;" src="{{asset(Storage::url($pengadaan->gambar))}}">
+                        <hr>
+                        <a class="konfirmasi" href=""><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
+                      </td>
                       <td><span class="tag tag-success">{{number_format($pengadaan->anggaran,0,",",",")}}</span></td>
                       <td></td>
                     </tr>
@@ -202,6 +205,19 @@
     @endif
   }
   );
+
+  $(document).on("click", ".konfirmasi", function(event){
+  event.preventDefault();
+  const url = $(this).attr('href');
+
+  var answer = window.confirm("Yakin akan dihapus?");
+  if(answer){
+    window.location.href = url;
+  }else{
+   
+  }
+
+  });
 </script>
 
 </body>
