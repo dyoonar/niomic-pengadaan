@@ -15,3 +15,4 @@ Route::post('/ubahAdmin','Admin@ubahAdmin');
 Route::get('/hapusHapus/{id}','Admin@hapusAdmin');
 Route::get('/listPengadaan','Pengadaan@index');
 Route::post('/tambahPengadaan','Pengadaan@tambahPengadaan');
+Route::get('/hapusGambar/{id}','Pengadaan@hapusGambar');

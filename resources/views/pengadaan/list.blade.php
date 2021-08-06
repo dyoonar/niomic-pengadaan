@@ -111,7 +111,7 @@
                       <td><a target="_blank" href="{{$pengadaan->deskripsi}}" ><button class="btn-primary">Lihat Detail</button></a></td>
                       <td style="width:20%;"><img style="width:70%;" src="{{asset(Storage::url($pengadaan->gambar))}}">
                         <hr>
-                        <a class="konfirmasi" href=""><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
+                        <a class="konfirmasi" href="/hapusGambar/{{$pengadaan->id_pengadaan}}"><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
                       </td>
                       <td><span class="tag tag-success">{{number_format($pengadaan->anggaran,0,",",",")}}</span></td>
                       <td></td>
