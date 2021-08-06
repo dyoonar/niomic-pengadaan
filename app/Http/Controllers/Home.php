@@ -9,14 +9,14 @@ use App\M_Suplier;
 
 class Home extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $key = env('APP_KEY');
         $token = Session::get('token');
-        $tokenDb = M_Suplier::where('token', $token)-> count();
-        If($tokenDb > 0){
+        $tokenDb = M_Suplier::where('token', $token)->count();
+        if ($tokenDb > 0) {
             $data['token'] = $token;
-
-        }else{
+        } else {
             $data['token'] = "kosong";
         }
         return view('home.home', $data);

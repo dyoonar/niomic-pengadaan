@@ -46,21 +46,21 @@
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="{{asset('arsha/assets/img/logo.png')}}" alt="" class="img-fluid"></a>-->
 
-     @include('home.menu');
+      @include('home.menu');
 
     </div>
   </header><!-- End Header -->
 
   <main id="main">
 
-      <!-- ======= Cta Section ======= -->
+    <!-- ======= Cta Section ======= -->
     <section id="cta" class="cta">
-      
+
     </section><!-- End Cta Section -->
 
     <section id="contact" class="contact">
       <div class="container" data-aos="fade-up">
-      
+
         <div class="section-title">
           <h2>Registrasi</h2>
           <p>Silahkan Daftarkan Usaha Anda.</p>
@@ -80,17 +80,17 @@
           @if(count($errors->all) > 0)
           <div class="alert alert-danger" role="alert">
             <ul>
-            @foreach($errors as $error)
+              @foreach($errors as $error)
               <li>
                 {{error}}
               </li>
-            @endforeach
-          </ul>
+              @endforeach
+            </ul>
           </div>
           @endif
           <div class="col-lg-12 mt-5 mt-lg-0 d-flex align-items-stretch">
             <form action="/simpanRegis" method="post" role="form" class="php-email-form">
-            {{csrf_field()}}
+              {{csrf_field()}}
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="name">Nama Usaha</label>

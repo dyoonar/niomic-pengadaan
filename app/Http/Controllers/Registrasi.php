@@ -11,20 +11,22 @@ use Illuminate\Support\Facades\Session;
 
 class Registrasi extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $token = Session::get('token');
-        $tokenDb = M_Suplier::where('token', $token)-> count();
-        If($tokenDb > 0){
+        $tokenDb = M_Suplier::where('token', $token)->count();
+        if ($tokenDb > 0) {
             $data['token'] = $token;
-
-        }else{
+        } else {
             $data['token'] = "kosong";
         }
         return view('registrasi.registrasi', $data);
     }
-    
-    public function registrasi(Request $request){
-        $this->validate($request,
+
+    public function registrasi(Request $request)
+    {
+        $this->validate(
+            $request,
             [
                 'nama_usaha' => 'required',
                 'email' => 'required',
@@ -34,7 +36,7 @@ class Registrasi extends Controller
             ]
         );
 
-        if(
+        if (
             M_Suplier::create(
                 [
                     "nama_usaha" => $request->nama_usaha,
@@ -44,10 +46,10 @@ class Registrasi extends Controller
                     "password" => encrypt($request->password)
                 ]
             )
-        ){
-            return redirect('/registrasi')->with('berhasil','Data Berhasil Di Simpan');
-        }else{
-            return redirect('/registrasi')->with('gagal','Data Gagal Di Simpan');
+        ) {
+            return redirect('/registrasi')->with('berhasil', 'Data Berhasil Di Simpan');
+        } else {
+            return redirect('/registrasi')->with('gagal', 'Data Gagal Di Simpan');
         }
     }
 }

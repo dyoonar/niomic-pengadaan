@@ -46,7 +46,7 @@
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="{{asset('arsha/assets/img/logo.png')}}" alt="" class="img-fluid"></a>-->
 
-     @include('home.menu');
+      @include('home.menu');
 
     </div>
   </header><!-- End Header -->
@@ -58,7 +58,7 @@
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
           <h1>Memberkan Kesempatan Kepada UMKM</h1>
-          <h2>Kami memberikan kesempatan kepada UMKM yang ingin mengajukan pengajuan  barang atau jasa yang dimiliki.</h2>
+          <h2>Kami memberikan kesempatan kepada UMKM yang ingin mengajukan pengajuan barang atau jasa yang dimiliki.</h2>
           <div class="d-flex justify-content-center justify-content-lg-start">
             <a href="/registrasi" class="btn-get-started scrollto">Daftar Sekarang</a>
             <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Watch Video</span></a>

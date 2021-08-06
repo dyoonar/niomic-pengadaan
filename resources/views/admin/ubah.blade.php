@@ -9,36 +9,36 @@
         </button>
       </div>
       <form action="/ubahAdmin" method="post" role="form">
-          {{csrf_field()}}
-          <input type="hidden" name="id_admin" id="id_admin" class="id_admin">
-      <div class="modal-body">
-      
-                <div class="card-body">
-                    <div class="form-group">
-                    <label for="exampleInputEmail1">Nama</label>
-                    <input type="text" class="form-control nama" id="u_nama" name="u_nama" placeholder="Masukan Nama">
-                  </div>
-                    <div class="form-group">
-                    <label for="exampleInputEmail1">Email address</label>
-                    <input type="email" class="form-control email" id="u_email" name="u_email" placeholder="Masukan email anda">
-                  </div>
-                  <div class="form-group">
-                    <label for="exampleInputPassword1">Alamat</label>
-                    <textarea class="form-control alamat" id="u_alamat" name="u_alamat" placeholder="Masukan Alamat">
+        {{csrf_field()}}
+        <input type="hidden" name="id_admin" id="id_admin" class="id_admin">
+        <div class="modal-body">
+
+          <div class="card-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nama</label>
+              <input type="text" class="form-control nama" id="u_nama" name="u_nama" placeholder="Masukan Nama">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Email address</label>
+              <input type="email" class="form-control email" id="u_email" name="u_email" placeholder="Masukan email anda">
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Alamat</label>
+              <textarea class="form-control alamat" id="u_alamat" name="u_alamat" placeholder="Masukan Alamat">
 
                     </textarea>
-                  </div>
-                  
-                 
-                </div>
-                <!-- /.card-body -->
+            </div>
 
-             
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-        <button type="submit" class="btn btn-primary">Simpan Data</button>
-      </div>
+
+          </div>
+          <!-- /.card-body -->
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-primary">Simpan Data</button>
+        </div>
       </form>
     </div>
   </div>
