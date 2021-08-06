@@ -109,16 +109,21 @@
                     <tr>
                       <td>{{$pengadaan->nama_pengadaan}}</td>
                       <td><a target="_blank" href="{{$pengadaan->deskripsi}}" ><button class="btn-primary">Lihat Detail</button></a></td>
-                      <td style="width:20%;"><img style="width:70%;" src="{{asset(Storage::url($pengadaan->gambar))}}">
+                      <td style="width:20%;">
+                        @if($pengadaan->gambar != "-")
+                        <img style="width:70%;" src="{{asset(Storage::url($pengadaan->gambar))}}">
                         <hr>
                         <a class="konfirmasi" href="/hapusGambar/{{$pengadaan->id_pengadaan}}"><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
+                        @endif
+                        @if($pengadaan->gambar == "-")
                         <hr>
                         <form method="post" action="" enctype="multipart/form-data" >
                           <input type="hidden" name="id_pengadaan" id="id_pengadaan" value="{{$pengadaan->id_pengadaan}}">
-                          <label class="btn btn-block btn-outline-info btn-flat">Gambar Pengadaan</label>
+                          <label for="gambar" class="btn btn-block btn-outline-info btn-flat">Gambar Pengadaan</label>
                           <input type="file" name="gambar" id="gambar" class="form-control" style="display:none">
                           <button type="submit" class="btn btn-primary">Upload</button>
                         </form>
+                        @endif
                       </td>
                       <td><span class="tag tag-success">{{number_format($pengadaan->anggaran,0,",",",")}}</span></td>
                       <td></td>
