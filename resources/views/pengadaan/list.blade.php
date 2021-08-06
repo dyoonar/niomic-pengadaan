@@ -117,7 +117,8 @@
                         @endif
                         @if($pengadaan->gambar == "-")
                         <hr>
-                        <form method="post" action="" enctype="multipart/form-data" >
+                        <form method="post" action="/uploadGambar" enctype="multipart/form-data" >
+                          {{csrf_field()}}
                           <input type="hidden" name="id_pengadaan" id="id_pengadaan" value="{{$pengadaan->id_pengadaan}}">
                           <label for="gambar" class="btn btn-block btn-outline-info btn-flat">Gambar Pengadaan</label>
                           <input type="file" name="gambar" id="gambar" class="form-control" style="display:none">
