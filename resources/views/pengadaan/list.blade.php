@@ -129,7 +129,9 @@
                           @endif
                         </td>
                         <td><span class="tag tag-success">{{number_format($pengadaan->anggaran,0,",",",")}}</span></td>
-                        <td></td>
+                        <td>
+                          <a href="" class="konfirmasi"><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
+                        </td>
                       </tr>
                       @endforeach
                     </tbody>
