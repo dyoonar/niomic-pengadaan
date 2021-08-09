@@ -131,7 +131,7 @@
                         <td><span class="tag tag-success">{{number_format($pengadaan->anggaran,0,",",",")}}</span></td>
                         <td>
                           <a href="/hapusPengadaan/{{$pengadaan->id_pengadaan}}" class="konfirmasi"><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
-                          <button data-isd_pengadaan="{{$pengadaan->id_pengadaan}}" data-nama_pengadaan="{{$pengadaan->nama_pengadaan}}" data-deskripsi="{{$pengadaan->deskripsi}}" data-anggaran="{{$pengadaan->anggaran}}" data-toggle="modal" data-target="#ubahModal" class="btn btn-secondary ubah"><i class="fas fa-edit"></i> Ubah</button>
+                          <button data-id_pengadaan="{{$pengadaan->id_pengadaan}}" data-nama_pengadaan="{{$pengadaan->nama_pengadaan}}" data-deskripsi="{{$pengadaan->deskripsi}}" data-anggaran="{{$pengadaan->anggaran}}" data-toggle="modal" data-target="#ubahModal" class="btn btn-secondary ubah"><i class="fas fa-edit"></i> Ubah</button>
                         </td>
                       </tr>
                       @endforeach

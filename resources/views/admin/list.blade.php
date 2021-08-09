@@ -165,15 +165,13 @@
       @if(\Session::has('berhasil'))
       Toast.fire({
         icon: 'success',
-        title: '{{Session::get('
-        berhasil ')}}'
+        title: '{{Session::get('berhasil')}}'
       })
       @endif
       @if(\Session::has('gagal'))
       Toast.fire({
         icon: 'error',
-        title: '{{Session::get('
-        gagal ')}}'
+        title: '{{Session::get('gagal')}}'
       })
       @endif
       @if(count($errors) > 0)

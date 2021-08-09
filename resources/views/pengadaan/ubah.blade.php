@@ -7,7 +7,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="" method="post" role="form" enctype="multipart/form-data">
+      <form action="/ubahPengadaan" method="post" role="form" enctype="multipart/form-data">
         {{csrf_field()}}
         <input type="hidden" name="id_pengadaan" id="id_pengadaan" class="id_pengadaan">
         <div class="modal-body">
