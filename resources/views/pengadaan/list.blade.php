@@ -130,7 +130,7 @@
                         </td>
                         <td><span class="tag tag-success">{{number_format($pengadaan->anggaran,0,",",",")}}</span></td>
                         <td>
-                          <a href="" class="konfirmasi"><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
+                          <a href="/hapusPengadaan/{{$pengadaan->id_pengadaan}}" class="konfirmasi"><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
                         </td>
                       </tr>
                       @endforeach
@@ -205,15 +205,13 @@
       @if(\Session::has('berhasil'))
       Toast.fire({
         icon: 'success',
-        title: '{{Session::get('
-        berhasil ')}}'
+        title: '{{Session::get('berhasil')}}'
       })
       @endif
       @if(\Session::has('gagal'))
       Toast.fire({
         icon: 'error',
-        title: '{{Session::get('
-        gagal ')}}'
+        title: '{{Session::get('gagal')}}'
       })
       @endif
       @if(count($errors) > 0)
