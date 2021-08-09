@@ -131,7 +131,7 @@
                         <td><span class="tag tag-success">{{number_format($pengadaan->anggaran,0,",",",")}}</span></td>
                         <td>
                           <a href="/hapusPengadaan/{{$pengadaan->id_pengadaan}}" class="konfirmasi"><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
-                          <button class="btn btn-secondary"><i class="fas fa-edit"></i> Ubah</button>
+                          <button data-toggle="modal" data-target="#ubahModal" class="btn btn-secondary"><i class="fas fa-edit"></i> Ubah</button>
                         </td>
                       </tr>
                       @endforeach
@@ -151,6 +151,7 @@
     <!-- /.content-wrapper -->
     @include('parsial.footer')
     @include('pengadaan.tambah')
+    @include('pengadaan.ubah')
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
       <!-- Control sidebar content goes here -->
@@ -175,6 +176,13 @@
   <script>
     function currency() {
       var input = document.getElementById("anggaran");
+
+      $(".labelRp").val(formatRupiah(input.value));
+
+    }
+
+    function currency() {
+      var input = document.getElementById("u_anggaran");
 
       $(".labelRp").val(formatRupiah(input.value));
 
