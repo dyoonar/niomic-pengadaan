@@ -20,7 +20,7 @@ class Pengadaan extends Controller
         $token = Session::get('token');
         $tokenDb = M_Admin::where('token', $token)->count();
         if ($tokenDb > 0) {
-            $data['pengadaan'] = M_Pengadaan::where('status', '1')->paginate(15);
+            $data['pengadaan'] = M_Pengadaan::where('status', '1')->paginate(1);
             return view('pengadaan.list', $data);
         } else {
             return redirect('/masukAdmin')->with('gagal', 'Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');

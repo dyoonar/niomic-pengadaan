@@ -47,7 +47,6 @@
             <a href="#" class="d-block">Nama Pengguna</a>
           </div>
         </div>
-
         <!-- Sidebar Menu -->
         @include('parsial.menu');
         <!-- /.sidebar-menu -->
@@ -107,31 +106,31 @@
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach($pengadaan as $pengadaan)
+                      @foreach($pengadaan as $p)
                       <tr>
-                        <td>{{$pengadaan->nama_pengadaan}}</td>
-                        <td><a target="_blank" href="{{$pengadaan->deskripsi}}"><button class="btn-primary">Lihat Detail</button></a></td>
+                        <td>{{$p->nama_pengadaan}}</td>
+                        <td><a target="_blank" href="{{$p->deskripsi}}"><button class="btn-primary">Lihat Detail</button></a></td>
                         <td style="width:20%;">
-                          @if($pengadaan->gambar != "-")
-                          <img style="width:70%;" src="{{asset(Storage::url($pengadaan->gambar))}}">
+                          @if($p->gambar != "-")
+                          <img style="width:70%;" src="{{asset(Storage::url($p->gambar))}}">
                           <hr>
-                          <a class="konfirmasi" href="/hapusGambar/{{$pengadaan->id_pengadaan}}"><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
+                          <a class="konfirmasi" href="/hapusGambar/{{$p->id_pengadaan}}"><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
                           @endif
-                          @if($pengadaan->gambar == "-")
+                          @if($p->gambar == "-")
                           <hr>
                           <form method="post" action="/uploadGambar" enctype="multipart/form-data">
                             {{csrf_field()}}
-                            <input type="hidden" name="id_pengadaan" id="id_pengadaan" value="{{$pengadaan->id_pengadaan}}">
+                            <input type="hidden" name="id_pengadaan" id="id_pengadaan" value="{{$p->id_pengadaan}}">
                             <label for="gambar" class="btn btn-block btn-outline-info btn-flat">Gambar Pengadaan</label>
                             <input type="file" name="gambar" id="gambar" class="form-control" style="display:none">
                             <button type="submit" class="btn btn-primary">Upload</button>
                           </form>
                           @endif
                         </td>
-                        <td><span class="tag tag-success">{{number_format($pengadaan->anggaran,0,",",",")}}</span></td>
+                        <td><span class="tag tag-success">{{number_format($p->anggaran,0,",",",")}}</span></td>
                         <td>
-                          <a href="/hapusPengadaan/{{$pengadaan->id_pengadaan}}" class="konfirmasi"><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
-                          <button data-id_pengadaan="{{$pengadaan->id_pengadaan}}" data-nama_pengadaan="{{$pengadaan->nama_pengadaan}}" data-deskripsi="{{$pengadaan->deskripsi}}" data-anggaran="{{$pengadaan->anggaran}}" data-toggle="modal" data-target="#ubahModal" class="btn btn-secondary ubah"><i class="fas fa-edit"></i> Ubah</button>
+                          <a href="/hapusPengadaan/{{$p->id_pengadaan}}" class="konfirmasi"><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
+                          <button data-id_pengadaan="{{$p->id_pengadaan}}" data-nama_pengadaan="{{$p->nama_pengadaan}}" data-deskripsi="{{$p->deskripsi}}" data-anggaran="{{$p->anggaran}}" data-toggle="modal" data-target="#ubahModal" class="btn btn-secondary ubah"><i class="fas fa-edit"></i> Ubah</button>
                         </td>
                       </tr>
                       @endforeach
@@ -139,6 +138,8 @@
                   </table>
                 </div>
                 <!-- /.card-body -->
+                
+                <div>{{$pengadaan->links()}}</div>
               </div>
               <!-- /.card -->
             </div>
