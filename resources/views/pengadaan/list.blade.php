@@ -131,7 +131,7 @@
                         <td><span class="tag tag-success">{{number_format($pengadaan->anggaran,0,",",",")}}</span></td>
                         <td>
                           <a href="/hapusPengadaan/{{$pengadaan->id_pengadaan}}" class="konfirmasi"><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
-                          <button data-toggle="modal" data-target="#ubahModal" class="btn btn-secondary"><i class="fas fa-edit"></i> Ubah</button>
+                          <button data-isd_pengadaan="{{$pengadaan->id_pengadaan}}" data-nama_pengadaan="{{$pengadaan->nama_pengadaan}}" data-deskripsi="{{$pengadaan->deskripsi}}" data-anggaran="{{$pengadaan->anggaran}}" data-toggle="modal" data-target="#ubahModal" class="btn btn-secondary ubah"><i class="fas fa-edit"></i> Ubah</button>
                         </td>
                       </tr>
                       @endforeach
@@ -242,6 +242,18 @@
 
       }
 
+    });
+
+    $(document).on("click", ".ubah", function() {
+      var nama_pengadaan = $(this).data('nama_pengadaan');
+      var deskripsi = $(this).data('deskripsi');
+      var anggaran = $(this).data('anggaran');
+      var id_pengadaan = $(this).data('id_pengadaan');
+
+      $(".nama_pengadaan").val(nama_pengadaan);
+      $(".deskripsi").val(deskripsi);
+      $(".anggaran").val(anggaran);
+      $(".id_pengadaan").val(id_pengadaan);
     });
   </script>
 

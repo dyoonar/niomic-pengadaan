@@ -9,21 +9,22 @@
       </div>
       <form action="" method="post" role="form" enctype="multipart/form-data">
         {{csrf_field()}}
+        <input type="hidden" name="id_pengadaan" id="id_pengadaan" class="id_pengadaan">
         <div class="modal-body">
 
           <div class="card-body">
             <div class="form-group">
               <label for="exampleInputEmail1">Nama Pengadaan</label>
-              <input type="text" class="form-control" id="u_nama_pengadaan" name="u_nama_pengadaan" placeholder="Masukan Nama Pengadaan">
+              <input type="text" class="form-control nama_pengadaan" id="u_nama_pengadaan" name="u_nama_pengadaan" placeholder="Masukan Nama Pengadaan">
             </div>
             <div class="form-group">
               <label for="exampleInputEmail1">Deskripsi</label>
-              <textarea class="form-control" id="u_deskripsi" name="u_deskripsi" placeholder="Masukan deskripsi"></textarea>
+              <textarea class="form-control deskripsi" id="u_deskripsi" name="u_deskripsi" placeholder="Masukan deskripsi"></textarea>
             </div>
             <div class="form-group">
               <!-- <label for="exampleInputEmail1">Anggaran</label> -->
               <label>Anggaran: <input type="" class="labelRp" disable style="border:none; background-color: white; color: black;"></label>
-              <input type="text" class="form-control" id="u_anggaran" name="u_anggaran" placeholder="Masukan Anggaran" onkeyup="currency()">
+              <input type="text" class="form-control anggaran" id="u_anggaran" name="u_anggaran" placeholder="Masukan Anggaran" onkeyup="currency()">
             </div>
           </div>
           <!-- /.card-body -->
