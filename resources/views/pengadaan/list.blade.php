@@ -131,6 +131,7 @@
                         <td><span class="tag tag-success">{{number_format($pengadaan->anggaran,0,",",",")}}</span></td>
                         <td>
                           <a href="/hapusPengadaan/{{$pengadaan->id_pengadaan}}" class="konfirmasi"><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
+                          <button class="btn btn-secondary"><i class="fas fa-edit"></i> Ubah</button>
                         </td>
                       </tr>
                       @endforeach
