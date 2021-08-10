@@ -19,3 +19,4 @@ Route::get('/hapusGambar/{id}','Pengadaan@hapusGambar');
 Route::post('/uploadGambar','Pengadaan@uploadGambar');
 Route::get('/hapusPengadaan/{id}','Pengadaan@hapusPengadaan');
 Route::post('/ubahPengadaan','Pengadaan@ubahPengadaan');
+Route::get('/listSuplier','Pengadaan@listSuplier');

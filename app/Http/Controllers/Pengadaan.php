@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Storage;
 
 use App\M_Admin;
 use App\M_Pengadaan;
+use App\M_Suplier;
+
 
 class Pengadaan extends Controller
 {
@@ -161,6 +163,17 @@ class Pengadaan extends Controller
             }
         }else {
             return redirect('/masukAdmin')->with('gagal', 'Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');
+        }
+    }
+    public function listSuplier()
+    {
+        $token = Session::get('token');
+        $tokenDb = M_Suplier::where('token', $token)->count();
+        if ($tokenDb > 0) {
+            $data['pengadaan'] = M_Pengadaan::where('status', '1')->paginate(15);
+            return view('suplier.pengadaan', $data);
+        } else {
+            return redirect('/masukSuplier')->with('gagal', 'Password Salah');
         }
     }
 }

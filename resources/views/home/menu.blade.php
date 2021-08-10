@@ -7,7 +7,7 @@
         <li><a class="getstarted scrollto" href="/registrasi">Daftar</a></li>
         @else
         <li><a class="nav-link scrollto" href="/suplierKeluar">Logout</a></li>
-        <li><a class="nav-link scrollto" href="#about">Pengajuan</a></li>
+        <li><a class="nav-link scrollto" href="/listSuplier">Pengajuan</a></li>
         @endif
     </ul>
     <i class="bi bi-list mobile-nav-toggle"></i>

@@ -32,7 +32,7 @@
       </ul>
     </li>
     <li class="nav-item">
-      <a href="../widgets.html" class="nav-link">
+      <a href="" class="nav-link scrollto">
         <i class="nav-icon fas fa-list"></i>
         <p>
           Pengajuan
