@@ -139,7 +139,7 @@
                 </div>
                 <!-- /.card-body -->
                 
-                <div>{{$pengadaan->links()}}</div>
+                <div class="d-flex justify-content-center">{{$pengadaan->links()}}</div>
               </div>
               <!-- /.card -->
             </div>

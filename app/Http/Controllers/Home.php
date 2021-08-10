@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use \Firebase\JWT\JWT;
 use App\M_Suplier;
+use App\M_Pengadaan;
+
 
 class Home extends Controller
 {
@@ -19,6 +21,7 @@ class Home extends Controller
         } else {
             $data['token'] = "kosong";
         }
+        $data['pengadaan'] = M_Pengadaan::where('status', '1')->paginate(15);
         return view('home.home', $data);
     }
 }
