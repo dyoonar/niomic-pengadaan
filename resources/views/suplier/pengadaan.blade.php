@@ -111,7 +111,7 @@
                         </td>
                         <td><span class="tag tag-success">{{number_format($p->anggaran,0,",",",")}}</span></td>
                         <td>
-                          <button class="btn btn-secondary"><i class="fas fa-plus"></i> Ajukan</button>
+                          <button data-toggle="modal" data-target="#pengajuanModal" class="btn btn-secondary"><i class="fas fa-plus"></i> Ajukan</button>
                         </td>
                       </tr>
                       @endforeach
@@ -132,6 +132,8 @@
     </div>
     <!-- /.content-wrapper -->
     @include('parsial.footer')
+    @include('suplier.pengajuan')
+    
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
       <!-- Control sidebar content goes here -->
@@ -154,28 +156,24 @@
   <!-- <script src="{{asset('adminLTE/dist/js/demo.js')}}"></script> -->
 
   <script>
-    function currency() {
+    function currency(){
       var input = document.getElementById("anggaran");
-
       $(".labelRp").val(formatRupiah(input.value));
-
     }
 
-    function currency() {
+    function currency(){
       var input = document.getElementById("u_anggaran");
-
       $(".labelRp").val(formatRupiah(input.value));
-
     }
 
-    function formatRupiah(angka, prefix) {
+    function formatRupiah(angka, prefix){
       var number_string = angka.replace(/[^,\d]/g, '').toString(),
         split = number_string.split(','),
         sisa = split[0].length % 3,
         rupiah = split[0].substr(0, sisa),
         ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
-      if (ribuan) {
+      if(ribuan){
         separator = sisa ? '.' : '';
         rupiah += separator + ribuan.join('.');
 
@@ -184,7 +182,7 @@
       rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
       return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
     }
-    $(function() {
+    $(function(){
       var Toast = Swal.mixin({
         toast: true,
         position: 'top-end',
@@ -211,14 +209,14 @@
       @endif
     });
 
-    $(document).on("click", ".konfirmasi", function(event) {
+    $(document).on("click", ".konfirmasi", function(event){
       event.preventDefault();
       const url = $(this).attr('href');
 
       var answer = window.confirm("Yakin akan dihapus?");
-      if (answer) {
+      if(answer){
         window.location.href = url;
-      } else {
+      }else{
 
       }
 
