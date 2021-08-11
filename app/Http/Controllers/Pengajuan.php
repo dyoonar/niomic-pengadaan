@@ -11,6 +11,7 @@ use Illuminate\Contracts\Encryption\DecryptException;
 
 use App\M_Admin;
 use App\M_Pengajuan;
+use App\M_Suplier;
 
 class Pengajuan extends Controller
 {
@@ -50,7 +51,7 @@ class Pengajuan extends Controller
                 if (M_Pengajuan::create(
                     [
                         "id_pengadaan" => $request->id_pengadaan,
-                        "id_suplier" => $request->id_suplier,
+                        "id_suplier" => $decode_array['id_suplier'],
                         "proposal" => $path,
                         "anggaran" => $request->anggaran
                     ]
