@@ -74,7 +74,7 @@
             <div class="col-12">
               <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">Responsive Hover Table</h3>
+                  <h3 class="card-title">Daftar Pengajuan Masuk</h3>
 
                   <div class="card-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -93,42 +93,31 @@
                   <table class="table table-hover text-nowrap">
                     <thead>
                       <tr>
-                        <th>ID</th>
-                        <th>User</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                        <th>Reason</th>
+                        <th>Nama Pengadaan</th>
+                        <th>Gambar</th>
+                        <th>Anggaran (IDR)</th>
+                        <th>Proposal</th>
+                        <th>Anggaran Pengajuan (IDR)</th>
+                        <th>Suplier</th>
+                        <th>Email</th>
+                        <th>Alamat</th>
+                        <th>Status Pengajuan</th>
                       </tr>
                     </thead>
                     <tbody>
+                      @foreach($pengajuan as $p)
                       <tr>
-                        <td>183</td>
-                        <td>John Doe</td>
-                        <td>11-7-2014</td>
-                        <td><span class="tag tag-success">Approved</span></td>
-                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+                        <td>{{$p['nama_pengadaan']}}</td>
+                        <td style="width:15%;"><img style="width:70%;" src="{{asset(Storage::url($p['gambar']))}}"></td>
+                        <td>{{number_format($p['anggaran'],0,",",".")}}</td>
+                        <td><a class="btn btn-primary" href="{{asset(Storage::url($p['proposal']))}}" target="_blank">Lihat Detail</a></td>
+                        <td>{{number_format($p['anggaran_pengajuan'],0,",",".")}}</td>
+                        <td>{{$p['nama_suplier']}}</td>
+                        <td>{{$p['email_suplier']}}</td>
+                        <td>{{$p['alamat_suplier']}}</td>
+                        <td>{{$p['status_pengajuan']}}</td>
                       </tr>
-                      <tr>
-                        <td>219</td>
-                        <td>Alexander Pierce</td>
-                        <td>11-7-2014</td>
-                        <td><span class="tag tag-warning">Pending</span></td>
-                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                      </tr>
-                      <tr>
-                        <td>657</td>
-                        <td>Bob Doe</td>
-                        <td>11-7-2014</td>
-                        <td><span class="tag tag-primary">Approved</span></td>
-                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                      </tr>
-                      <tr>
-                        <td>175</td>
-                        <td>Mike Doe</td>
-                        <td>11-7-2014</td>
-                        <td><span class="tag tag-danger">Denied</span></td>
-                        <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-                      </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>

@@ -12,6 +12,7 @@ use Illuminate\Contracts\Encryption\DecryptException;
 use App\M_Admin;
 use App\M_Pengajuan;
 use App\M_Suplier;
+use App\M_Pengadaan;
 
 class Pengajuan extends Controller
 {
@@ -21,7 +22,26 @@ class Pengajuan extends Controller
         $tokenDb = M_Admin::where('token',$token)->count();
 
         if($tokenDb > 0){
-            return view('pengajuan.list');
+            $pengajuan = M_Pengajuan::where('status', '1')->paginate(15);
+            $dataP = array();
+            foreach($pengajuan as $p){
+                $pengadaan = M_Pengadaan::where('id_pengadaan', $p->id_pengadaan)->first();
+                $sup = M_Suplier::where('id_suplier', $p->id_suplier)->first();
+                $dataP[] = array(
+                    "id_pengajuan" => $p->id_pengajuan,
+                    "nama_pengadaan" => $pengadaan->nama_pengadaan,
+                    "gambar" => $pengadaan->gambar,
+                    "anggaran" => $pengadaan->anggaran,
+                    "proposal" => $p->proposal,
+                    "anggaran_pengajuan" => $p->anggaran,
+                    "status_pengajuan" => $p->status,
+                    "nama_suplier" => $sup->nama_usaha,
+                    "email_suplier" => $sup->email,
+                    "alamat_suplier" => $sup->alamat
+                );
+            }
+            $data['pengajuan'] = $dataP;
+            return view('pengajuan.list', $data);
         }else{
             return redirect('/masukAdmin')->with('gagal','Anda silahkan login dahulu');
         }
