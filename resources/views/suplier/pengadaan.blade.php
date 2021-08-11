@@ -110,7 +110,9 @@
                         <img style="width:70%;" src="{{asset(Storage::url($p->gambar))}}">
                         </td>
                         <td><span class="tag tag-success">{{number_format($p->anggaran,0,",",",")}}</span></td>
-                        
+                        <td>
+                          <button class="btn btn-secondary"><i class="fas fa-plus"></i> Ajukan</button>
+                        </td>
                       </tr>
                       @endforeach
                     </tbody>
