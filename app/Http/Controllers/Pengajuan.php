@@ -23,7 +23,7 @@ class Pengajuan extends Controller
         $tokenDb = M_Admin::where('token',$token)->count();
 
         if($tokenDb > 0){
-            $pengajuan = M_Pengajuan::paginate(15);
+            $pengajuan = M_Pengajuan::where('status', '1')->paginate(15);
             $dataP = array();
             foreach($pengajuan as $p){
                 $pengadaan = M_Pengadaan::where('id_pengadaan', $p->id_pengadaan)->first();
