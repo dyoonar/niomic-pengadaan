@@ -24,3 +24,4 @@ Route::post('/tambahPengajuan','Pengajuan@tambahPengajuan');
 Route::get('/terimaPengajuan/{id}','Pengajuan@terimaPengajuan');
 Route::get('/tolakPengajuan/{id}','Pengajuan@tolakPengajuan');
 Route::get('/riwayatku','Pengajuan@riwayatku');
+Route::post('/tambahLaporan','Pengajuan@tambahLaporan');

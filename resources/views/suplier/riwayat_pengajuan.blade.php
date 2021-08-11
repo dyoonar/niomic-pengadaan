@@ -122,7 +122,7 @@
                           @if($p['status_pengajuan'] == 2)
                           Telah Diterima
                           <hr>
-                          <form method="post" action="" enctype="multipart/form-data">
+                          <form method="post" action="/tambahLaporan" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <input type="hidden" name="id_pengajuan" id="id_pengajuan" value="{{$p['id_pengajuan']}}">
                             <label for="laporan" class="btn btn-block btn-outline-info btn-flat">Laporan Pengajuan</label>
@@ -168,9 +168,12 @@
   <script src="{{asset('adminLTE/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
   <!-- AdminLTE App -->
   <script src="{{asset('adminLTE/dist/js/adminlte.min.js')}}"></script>
-  <!-- AdminLTE for demo purposes -->
-  <!-- <script src="{{asset('adminLTE/dist/js/demo.js')}}"></script> -->
-<script type="text/javascript">
+  <!-- SweetAlert2 -->
+  <script src="{{asset('adminLTE/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+  <!-- Toastr -->
+  <script src="{{asset('adminLTE/plugins/toastr/toastr.min.js')}}"></script>
+ >
+<script>
   $(document).on("click", ".konfirmasi", function(event) {
       event.preventDefault();
       const url = $(this).attr('href');
@@ -182,6 +185,33 @@
 
       }
 
+    });
+
+    $(function() {
+      var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+      });
+      @if(\Session::has('berhasil'))
+      Toast.fire({
+        icon: 'success',
+        title: '{{Session::get('berhasil')}}'
+      })
+      @endif
+      @if(\Session::has('gagal'))
+      Toast.fire({
+        icon: 'error',
+        title: '{{Session::get('gagal')}}'
+      })
+      @endif
+      @if(count($errors) > 0)
+      Toast.fire({
+        icon: 'error',
+        title: '<ul>@foreach($errors->all() as $error)<li>{{$error}}</li>@endforeach</ul>'
+      })
+      @endif
     });
 </script>
 </body>

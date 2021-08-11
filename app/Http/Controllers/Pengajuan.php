@@ -13,6 +13,7 @@ use App\M_Admin;
 use App\M_Pengajuan;
 use App\M_Suplier;
 use App\M_Pengadaan;
+use App\M_Laporan;
 
 class Pengajuan extends Controller
 {
@@ -152,6 +153,43 @@ class Pengajuan extends Controller
             $data['pengajuan'] = $dataArr;
                 return view('suplier.riwayat_pengajuan', $data);
         }else{
+            return redirect('/masukSuplier')->with('gagal', 'Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');
+        }
+    }
+    public function tambahLaporan(Request $request)
+    {
+        $key = env('APP_KEY');
+        $token = Session::get('token');
+        $tokenDb = M_Suplier::where('token', $token)->count();
+        $decode = JWT::decode($token, $key, array('HS256'));
+        $decode_array = (array) $decode;
+        if ($tokenDb > 0) {
+            $this->validate(
+                $request,
+                [
+                    'id_pengajuan' => 'required',
+                    'laporan' => 'required|mimes:pdf,PDF|max:10000'
+                ]
+            );
+            $cekLaporan = M_Laporan::where('id_suplier', $decode_array['id_suplier'])->where('id_pengajuan', $request->id_pengajuan)->count();
+            if($cekLaporan == 0){
+                $path = $request->file('laporan')->store('public/laporan');
+                if (M_Laporan::create(
+                    [
+                        "id_pengajuan" => $request->id_pengajuan,
+                        "id_suplier" => $decode_array['id_suplier'],
+                        "laporan" => $path,
+                    ]
+                )) {
+                    return redirect('/riwayatku')->with('berhasil', 'Laporan Berhasil Diupload');
+                } else {
+                    return redirect('/riwayatku')->with('gagal', 'Laporan Gagal Diupload');    
+                }
+            }else{
+                return redirect('/riwayatku')->with('gagal', 'Laporan sudah pernah Diupload');
+            }
+            
+        } else {
             return redirect('/masukSuplier')->with('gagal', 'Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');
         }
     }
