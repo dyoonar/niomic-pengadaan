@@ -148,9 +148,9 @@ class Pengajuan extends Controller
                     "email_suplier" => $sup->email,
                     "alamat_suplier" => $sup->alamat
                 );
-                $data['pengajuan'] = $dataArr;
-                return view('suplier.riwayat_pengajuan', $data);
             }
+            $data['pengajuan'] = $dataArr;
+                return view('suplier.riwayat_pengajuan', $data);
         }else{
             return redirect('/masukSuplier')->with('gagal', 'Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');
         }

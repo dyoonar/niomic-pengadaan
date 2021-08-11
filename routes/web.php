@@ -23,3 +23,4 @@ Route::get('/listSuplier','Pengadaan@listSuplier');
 Route::post('/tambahPengajuan','Pengajuan@tambahPengajuan');
 Route::get('/terimaPengajuan/{id}','Pengajuan@terimaPengajuan');
 Route::get('/tolakPengajuan/{id}','Pengajuan@tolakPengajuan');
+Route::get('/riwayatku','Pengajuan@riwayatku');
