@@ -10,25 +10,26 @@
       </div>
       <form action="" method="post" role="form" enctype="multipart/form-data">
         {{csrf_field()}}
+        <input type="hidden" name="id_pengadaan" id="id_pengadaan" class="id_pengadaan">
         <div class="modal-body">
 
           <div class="card-body">
             
             <div class="form-group">
               <label for="exampleInputEmail1">Nama Pengadaan</label>
-              <input type="text" class="form-control" id="nama_pengadaan" name="nama_pengadaan" placeholder="Masukan Nama Pengadaan" disabled>
+              <input type="text" class="form-control nama_pengadaan" id="nama_pengadaan" name="nama_pengadaan" placeholder="Masukan Nama Pengadaan" disabled>
             </div>
-            
+            <div class="form-group">
+              <!-- <label for="exampleInputEmail1">Anggaran</label> -->
+              <label>Anggaran: <input type="" class="labelRp" disabled style="border:none; background-color: white; color: black;"></label>
+              <input type="text" class="form-control anggaran" id="anggaran" name="anggaran" placeholder="Masukan Anggaran" onkeyup="currency()">
+            </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Proposal</label>
               <input type="file" class="form-control" id="proposal" name="proposal" accept="application/pdf">
             </div>
             
-            <div class="form-group">
-              <!-- <label for="exampleInputEmail1">Anggaran</label> -->
-              <label>Anggaran: <input type="" class="labelRp" disabled style="border:none; background-color: white; color: black;"></label>
-              <input type="text" class="form-control" id="anggaran" name="anggaran" placeholder="Masukan Anggaran" onkeyup="currency()">
-            </div>
+            
           </div>
           <!-- /.card-body -->
 

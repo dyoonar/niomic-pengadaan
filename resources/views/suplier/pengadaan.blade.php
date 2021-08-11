@@ -109,9 +109,9 @@
                         <td style="width:20%;">
                         <img style="width:70%;" src="{{asset(Storage::url($p->gambar))}}">
                         </td>
-                        <td><span class="tag tag-success">{{number_format($p->anggaran,0,",",",")}}</span></td>
+                        <td><span class="tag tag-success">Rp. {{number_format($p->anggaran,0,",",".")}}</span></td>
                         <td>
-                          <button data-toggle="modal" data-target="#pengajuanModal" class="btn btn-secondary"><i class="fas fa-plus"></i> Ajukan</button>
+                          <button data-id_pengadaan="{{$p->id_pengadaan}}" data-nama_pengadaan="{{$p->nama_pengadaan}}" data-anggaran="{{$p->anggaran}}" data-toggle="modal" data-target="#pengajuanModal" class="btn btn-secondary detail"><i class="fas fa-plus"></i> Ajukan</button>
                         </td>
                       </tr>
                       @endforeach
@@ -158,16 +158,16 @@
   <script>
     function currency(){
       var input = document.getElementById("anggaran");
-      $(".labelRp").val(formatRupiah(input.value));
+      $(".labelRp").val(formatRupiah(input.value, ''));
     }
 
-    function currency(){
+    function curency(){
       var input = document.getElementById("u_anggaran");
-      $(".labelRp").val(formatRupiah(input.value));
+      $(".labelRp").val(formatRupiah(input.value, ''));
     }
 
     function formatRupiah(angka, prefix){
-      var number_string = angka.replace(/[^,\d]/g, '').toString(),
+      var number_string = angka.toString().replace(/[^,\d]/g, '').toString(),
         split = number_string.split(','),
         sisa = split[0].length % 3,
         rupiah = split[0].substr(0, sisa),
@@ -219,6 +219,17 @@
       }else{
 
       }
+    });
+
+    $(document).on("click", ".detail", function() {
+      var nama_pengadaan = $(this).data('nama_pengadaan');
+      var anggaran = $(this).data('anggaran');
+      var id_pengadaan = $(this).data('id_pengadaan');
+
+      $(".nama_pengadaan").val(nama_pengadaan);
+      $(".anggaran").val(anggaran);
+      $(".id_pengadaan").val(id_pengadaan);
+      $(".labelRp").val(formatRupiah(anggaran, ''));
 
     });
 

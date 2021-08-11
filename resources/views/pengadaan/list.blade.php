@@ -127,7 +127,7 @@
                           </form>
                           @endif
                         </td>
-                        <td><span class="tag tag-success">{{number_format($p->anggaran,0,",",",")}}</span></td>
+                        <td><span class="tag tag-success">Rp. {{number_format($p->anggaran,0,",",".")}}</span></td>
                         <td>
                           <a href="/hapusPengadaan/{{$p->id_pengadaan}}" class="konfirmasi"><button class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a>
                           <button data-id_pengadaan="{{$p->id_pengadaan}}" data-nama_pengadaan="{{$p->nama_pengadaan}}" data-deskripsi="{{$p->deskripsi}}" data-anggaran="{{$p->anggaran}}" data-toggle="modal" data-target="#ubahModal" class="btn btn-secondary ubah"><i class="fas fa-edit"></i> Ubah</button>
@@ -175,22 +175,22 @@
   <!-- <script src="{{asset('adminLTE/dist/js/demo.js')}}"></script> -->
 
   <script>
-    function currency() {
+    function currency(){
       var input = document.getElementById("anggaran");
 
-      $(".labelRp").val(formatRupiah(input.value));
+      $(".labelRp").val(formatRupiah(input.value, ''));
 
     }
 
-    function currency() {
+    function curency(){
       var input = document.getElementById("u_anggaran");
 
-      $(".labelRp").val(formatRupiah(input.value));
+      $(".labelRp").val(formatRupiah(input.value, ''));
 
     }
 
     function formatRupiah(angka, prefix) {
-      var number_string = angka.replace(/[^,\d]/g, '').toString(),
+      var number_string = angka.toString().replace(/[^,\d]/g, '').toString(),
         split = number_string.split(','),
         sisa = split[0].length % 3,
         rupiah = split[0].substr(0, sisa),

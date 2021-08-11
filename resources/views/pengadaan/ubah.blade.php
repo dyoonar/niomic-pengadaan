@@ -24,7 +24,7 @@
             <div class="form-group">
               <!-- <label for="exampleInputEmail1">Anggaran</label> -->
               <label>Anggaran: <input type="" class="labelRp" disabled style="border:none; background-color: white; color: black;"></label>
-              <input type="text" class="form-control anggaran" id="u_anggaran" name="u_anggaran" placeholder="Masukan Anggaran" onkeyup="currency()">
+              <input type="text" class="form-control anggaran" id="u_anggaran" name="u_anggaran" placeholder="Masukan Anggaran" onkeyup="curency()">
             </div>
           </div>
           <!-- /.card-body -->
