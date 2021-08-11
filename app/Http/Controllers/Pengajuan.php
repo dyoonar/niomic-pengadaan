@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Encryption\DecryptException;
 
 use App\M_Admin;
+use App\M_Pengajuan;
 
 class Pengajuan extends Controller
 {
@@ -25,5 +26,45 @@ class Pengajuan extends Controller
         }
 
         
+    }
+
+    public function tambahPengajuan(Request $request)
+    {
+        $key = env('APP_KEY');
+        $token = Session::get('token');
+        $tokenDb = M_Suplier::where('token', $token)->count();
+        $decode = JWT::decode($token, $key, array('HS256'));
+        $decode_array = (array) $decode;
+        if ($tokenDb > 0) {
+            $this->validate(
+                $request,
+                [
+                    'id_pengadaan' => 'required',
+                    'proposal' => 'required|mimes:pdf,PDF|max:10000',
+                    'anggaran' => 'required',
+                ]
+            );
+            $cekpengajuan = M_Pengajuan::where('id_suplier', $decode_array['id_suplier'])->where('id_pengadaan', $request->id_pengadaan)->count();
+            if($cekpengajuan == 0){
+                $path = $request->file('proposal')->store('public/proposal');
+                if (M_Pengajuan::create(
+                    [
+                        "id_pengadaan" => $request->id_pengadaan,
+                        "id_suplier" => $request->id_suplier,
+                        "proposal" => $path,
+                        "anggaran" => $request->anggaran
+                    ]
+                )) {
+                    return redirect('/listSuplier')->with('berhasil', 'Pengajuan Berhasil, mohon ditunggu');
+                } else {
+                    return redirect('/listSuplier')->with('gagal', 'Pengajuan Gagal, Hubungi Admin');    
+                }
+            }else{
+                return redirect('/listSuplier')->with('gagal', 'Pengajuan sudah pernah dilakukan');
+            }
+            
+        } else {
+            return redirect('/masukSuplier')->with('gagal', 'Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');
+        }
     }
 }
