@@ -115,7 +115,12 @@
                         <td>{{$p['nama_suplier']}}</td>
                         <td>{{$p['email_suplier']}}</td>
                         <td>{{$p['alamat_suplier']}}</td>
-                        <td>{{$p['status_pengajuan']}}</td>
+                        <td>
+                          @if($p['status_pengajuan'] == 1)
+                          <a href="" class="btn btn-secondary konfirmasi"><i class="fa fa-check"></i>  Terima</a>
+                          <a href="" class="btn btn-danger konfirmasi"><i class="fa fa-times"></i>  Tolak</a>
+                          @endif
+                        </td>
                       </tr>
                       @endforeach
                     </tbody>
@@ -149,6 +154,20 @@
   <script src="{{asset('adminLTE/dist/js/adminlte.min.js')}}"></script>
   <!-- AdminLTE for demo purposes -->
   <!-- <script src="{{asset('adminLTE/dist/js/demo.js')}}"></script> -->
+<script type="text/javascript">
+  $(document).on("click", ".konfirmasi", function(event) {
+      event.preventDefault();
+      const url = $(this).attr('href');
+
+      var answer = window.confirm("Yakin akan memproses data?");
+      if (answer) {
+        window.location.href = url;
+      } else {
+
+      }
+
+    });
+</script>
 </body>
 
 </html>
