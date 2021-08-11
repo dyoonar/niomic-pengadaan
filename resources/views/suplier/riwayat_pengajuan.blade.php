@@ -90,7 +90,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body table-responsive p-0">
-                  <table class="table table-hover text-nowrap">
+                  <table class="table table-hover text-nowrap text-center">
                     <thead>
                       <tr>
                         <th>Nama Pengadaan</th>
@@ -121,6 +121,14 @@
                           @endif
                           @if($p['status_pengajuan'] == 2)
                           Telah Diterima
+                          <hr>
+                          <form method="post" action="" enctype="multipart/form-data">
+                            {{csrf_field()}}
+                            <input type="hidden" name="id_pengajuan" id="id_pengajuan" value="{{$p['id_pengajuan']}}">
+                            <label for="laporan" class="btn btn-block btn-outline-info btn-flat">Laporan Pengajuan</label>
+                            <input type="file" name="laporan" id="laporan" class="form-control" style="display:none" accept="application/pdf">
+                            <button type="submit" class="btn btn-secondary">Upload</button>
+                          </form>
                           @endif
                           @if($p['status_pengajuan'] == 3)
                           Telah Selesai
