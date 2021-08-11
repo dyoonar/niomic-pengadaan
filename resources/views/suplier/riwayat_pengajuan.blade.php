@@ -122,6 +122,7 @@
                           @if($p['status_pengajuan'] == 2)
                           Telah Diterima
                           <hr>
+                          @if($p['laporan'] == "-")
                           <form method="post" action="/tambahLaporan" enctype="multipart/form-data">
                             {{csrf_field()}}
                             <input type="hidden" name="id_pengajuan" id="id_pengajuan" value="{{$p['id_pengajuan']}}">
@@ -129,6 +130,9 @@
                             <input type="file" name="laporan" id="laporan" class="form-control" style="display:none" accept="application/pdf">
                             <button type="submit" class="btn btn-secondary">Upload</button>
                           </form>
+                          @else
+                          <a href="{{asset(Storage::url($p['laporan']))}}" class="btn btn-warning" target="_blank"><i class="fa fa-eye"></i>Lihat Laporan</a>
+                          @endif
                           @endif
                           @if($p['status_pengajuan'] == 3)
                           Telah Selesai

@@ -137,6 +137,14 @@ class Pengajuan extends Controller
             foreach($pengajuan as $p){
                 $pengadaan = M_Pengadaan::where('id_pengadaan', $p->id_pengadaan)->first();
                 $sup = M_Suplier::where('id_suplier', $decode_array['id_suplier'])->first();
+                $lapCount = M_Laporan::where('id_pengajuan', $p->id_pengajuan)->count();
+                $lap = M_Laporan::where('id_pengajuan', $p->id_pengajuan)->first();
+                if($lapCount > 0){
+                    $lapLink = $lap->laporan;
+                }else{
+                    $lapLink = "-";
+                }
+
                 $dataArr[] = array(
                     "id_pengajuan" => $p->id_pengajuan,
                     "nama_pengadaan" => $pengadaan->nama_pengadaan,
@@ -147,7 +155,9 @@ class Pengajuan extends Controller
                     "status_pengajuan" => $p->status,
                     "nama_suplier" => $sup->nama_usaha,
                     "email_suplier" => $sup->email,
-                    "alamat_suplier" => $sup->alamat
+                    "alamat_suplier" => $sup->alamat,
+                    "laporan" => $lapLink
+
                 );
             }
             $data['pengajuan'] = $dataArr;
