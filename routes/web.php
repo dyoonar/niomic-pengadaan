@@ -21,3 +21,4 @@ Route::get('/hapusPengadaan/{id}','Pengadaan@hapusPengadaan');
 Route::post('/ubahPengadaan','Pengadaan@ubahPengadaan');
 Route::get('/listSuplier','Pengadaan@listSuplier');
 Route::post('/tambahPengajuan','Pengajuan@tambahPengajuan');
+Route::get('/terimaPengajuan/{id}','Pengajuan@terimaPengajuan');

@@ -88,4 +88,22 @@ class Pengajuan extends Controller
             return redirect('/masukSuplier')->with('gagal', 'Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');
         }
     }
+
+    public function terimaPengajuan($id){
+        $token = Session::get('token');
+        $tokenDb = M_Admin::where('token',$token)->count();
+        if ($tokenDb > 0) {
+            if(M_Pengajuan::where('id_pengajuan',$id)->update(
+                [
+                    "status" => "2"
+                ]
+            )){
+                return redirect('/pengajuan')->with('berhasil', 'Status Pengajuan Berhasil Dirubah');
+            }else{
+                return redirect('/pengajuan')->with('gagal', 'Status Pengajuan Gagal Dirubah');
+            }
+        }else{
+            return redirect('/masukAdmin')->with('gagal','Anda silahkan login dahulu');
+        }
+    }
 }

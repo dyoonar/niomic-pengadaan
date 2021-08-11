@@ -117,7 +117,7 @@
                         <td>{{$p['alamat_suplier']}}</td>
                         <td>
                           @if($p['status_pengajuan'] == 1)
-                          <a href="" class="btn btn-secondary konfirmasi"><i class="fa fa-check"></i>  Terima</a>
+                          <a href="/terimaPengajuan/{{$p['id_pengajuan']}}" class="btn btn-secondary konfirmasi"><i class="fa fa-check"></i>  Terima</a>
                           <a href="" class="btn btn-danger konfirmasi"><i class="fa fa-times"></i>  Tolak</a>
                           @endif
                         </td>
