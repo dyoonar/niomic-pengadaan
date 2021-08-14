@@ -39,5 +39,13 @@
         </p>
       </a>
     </li>
+    <li class="nav-item">
+      <a href="/laporan" class="nav-link scrollto">
+        <i class="nav-icon fas fa-list"></i>
+        <p>
+          Lap Pengajuan
+        </p>
+      </a>
+    </li>
   </ul>
 </nav>

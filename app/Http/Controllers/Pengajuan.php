@@ -203,4 +203,44 @@ class Pengajuan extends Controller
             return redirect('/masukSuplier')->with('gagal', 'Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');
         }
     }
+    public function laporan(){
+        $key = env('APP_KEY');
+        $token = Session::get('token');
+        $tokenDb = M_Admin::where('token',$token)->count();
+
+        if($tokenDb > 0){
+            $pengajuan = M_Pengajuan::where('status', '2')->paginate(15);
+            $dataP = array();
+            foreach($pengajuan as $p){
+                $pengadaan = M_Pengadaan::where('id_pengadaan', $p->id_pengadaan)->first();
+                $sup = M_Suplier::where('id_suplier', $p->id_suplier)->first();
+                $c_laporan = M_Laporan::where('id_pengajuan', $p->id_pengajuan)->count();
+                $laporan = M_Laporan::where('id_pengajuan', $p->id_pengajuan)->first();
+                if($c_laporan > 0){
+                    $dataP[] = array(
+                        "id_pengajuan" => $p->id_pengajuan,
+                        "nama_pengadaan" => $pengadaan->nama_pengadaan,
+                        "gambar" => $pengadaan->gambar,
+                        "anggaran" => $pengadaan->anggaran,
+                        "proposal" => $p->proposal,
+                        "anggaran_pengajuan" => $p->anggaran,
+                        "status_pengajuan" => $p->status,
+                        "nama_suplier" => $sup->nama_usaha,
+                        "email_suplier" => $sup->email,
+                        "alamat_suplier" => $sup->alamat,
+                        "laporan" => $laporan->laporan
+                    );
+                }else{
+                    
+                }
+
+                
+            }
+            $data['pengajuan'] = $dataP;
+            print_r($data);
+            // return view('pengajuan.laporanadmin', $data);
+        }else{
+            return redirect('/masukAdmin')->with('gagal','Anda silahkan login dahulu');
+        }
+    }
 }
