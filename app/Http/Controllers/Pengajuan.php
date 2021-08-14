@@ -233,11 +233,26 @@ class Pengajuan extends Controller
                 }else{
                     
                 }
-
-                
             }
             $data['pengajuan'] = $dataP;
             return view('admin.laporan', $data);
+        }else{
+            return redirect('/masukAdmin')->with('gagal','Anda silahkan login dahulu');
+        }
+    }
+    public function selesaiPengajuan($id){
+        $token = Session::get('token');
+        $tokenDb = M_Admin::where('token',$token)->count();
+        if ($tokenDb > 0) {
+            if(M_Pengajuan::where('id_pengajuan',$id)->update(
+                [
+                    "status" => "3"
+                ]
+            )){
+                return redirect('/laporan')->with('berhasil', 'Status Pengajuan Berhasil Dirubah');
+            }else{
+                return redirect('/laporan')->with('gagal', 'Status Pengajuan Gagal Dirubah');
+            }
         }else{
             return redirect('/masukAdmin')->with('gagal','Anda silahkan login dahulu');
         }
