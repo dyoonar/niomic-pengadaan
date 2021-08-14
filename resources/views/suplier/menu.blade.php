@@ -14,7 +14,15 @@
       <a href="/riwayatku" class="nav-link">
         <i class="nav-icon fa fa-history"></i>
         <p>
-          Riwayat
+          Riwayat Pengajuan
+        </p>
+      </a>
+    </li>
+    <li class="nav-item">
+      <a href="/pengajuanselesai" class="nav-link">
+        <i class="nav-icon fa fa-history"></i>
+        <p>
+          Pengajuan Selesai
         </p>
       </a>
     </li>
