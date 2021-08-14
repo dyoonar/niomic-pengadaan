@@ -257,4 +257,46 @@ class Pengajuan extends Controller
             return redirect('/masukAdmin')->with('gagal','Anda silahkan login dahulu');
         }
     }
+
+    public function pengajuanselesai(){
+        $key = env('APP_KEY');
+        $token = Session::get('token');
+        $tokenDb = M_Suplier::where('token', $token)->count();
+        $decode = JWT::decode($token, $key, array('HS256'));
+        $decode_array = (array) $decode;
+        if ($tokenDb > 0) {
+            $pengajuan = M_Pengajuan::where('id_suplier', $decode_array['id_suplier'])->where('status', '3')->get();
+            $dataArr = array();
+            foreach($pengajuan as $p){
+                $pengadaan = M_Pengadaan::where('id_pengadaan', $p->id_pengadaan)->first();
+                $sup = M_Suplier::where('id_suplier', $decode_array['id_suplier'])->first();
+                $lapCount = M_Laporan::where('id_pengajuan', $p->id_pengajuan)->count();
+                $lap = M_Laporan::where('id_pengajuan', $p->id_pengajuan)->first();
+                if($lapCount > 0){
+                    $lapLink = $lap->laporan;
+                }else{
+                    $lapLink = "-";
+                }
+
+                $dataArr[] = array(
+                    "id_pengajuan" => $p->id_pengajuan,
+                    "nama_pengadaan" => $pengadaan->nama_pengadaan,
+                    "gambar" => $pengadaan->gambar,
+                    "anggaran" => $pengadaan->anggaran,
+                    "proposal" => $p->proposal,
+                    "anggaran_pengajuan" => $p->anggaran,
+                    "status_pengajuan" => $p->status,
+                    "nama_suplier" => $sup->nama_usaha,
+                    "email_suplier" => $sup->email,
+                    "alamat_suplier" => $sup->alamat,
+                    "laporan" => $lapLink
+
+                );
+            }
+            $data['pengajuan'] = $dataArr;
+                return view('suplier.pengajuanselesai', $data);
+        }else{
+            return redirect('/masukSuplier')->with('gagal', 'Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');
+        }
+    }
 }
