@@ -237,8 +237,7 @@ class Pengajuan extends Controller
                 
             }
             $data['pengajuan'] = $dataP;
-            print_r($data);
-            // return view('pengajuan.laporanadmin', $data);
+            return view('admin.laporan', $data);
         }else{
             return redirect('/masukAdmin')->with('gagal','Anda silahkan login dahulu');
         }
