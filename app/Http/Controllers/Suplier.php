@@ -44,7 +44,7 @@ class Suplier extends Controller
                         ]
                     );
                     Session::put('token', $jwt);
-                    return redirect('/');
+                    return redirect('/listSuplier');
                 } else {
                     return redirect('/masukSuplier')->with('gagal', 'Password Salah');
                 }
