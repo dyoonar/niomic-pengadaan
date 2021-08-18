@@ -120,7 +120,7 @@
                           Menunggu Konfirmasi
                           @endif
                           @if($p['status_pengajuan'] == 2)
-                          Telah Diterima
+                          Telah Diterima, <br>Submit Laporan Pertanggungjawaban
                           <hr>
                           @if($p['laporan'] == "-")
                           <form method="post" action="/tambahLaporan" enctype="multipart/form-data">
