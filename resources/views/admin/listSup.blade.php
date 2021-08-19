@@ -112,7 +112,7 @@
                         <td>{{$sup->no_npwp}}</td>
                         <td>
                             @if($sup->status == "0")
-                            <a href="" class="btn btn-success konfirmasi"><i class="fas fa-check"></i> Verifikasi</a>
+                            <a href="/Aktif/{{$sup->id_suplier}}" class="btn btn-success konfirmasi"><i class="fas fa-check"></i> Verifikasi</a>
                             @else
                             <a href="/nonAktif/{{$sup->id_suplier}}" class="btn btn-danger konfirmasi"><i class="fas fa-time"></i> Non Aktif</a>
                             @endif
