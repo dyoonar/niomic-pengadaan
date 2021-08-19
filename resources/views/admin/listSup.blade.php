@@ -114,7 +114,7 @@
                             @if($sup->status == "0")
                             <a href="" class="btn btn-success konfirmasi"><i class="fas fa-check"></i> Verifikasi</a>
                             @else
-                            <a href="" class="btn btn-danger konfirmasi"><i class="fas fa-time"></i> Non Aktif</a>
+                            <a href="/nonAktif/{{$sup->id_suplier}}" class="btn btn-danger konfirmasi"><i class="fas fa-time"></i> Non Aktif</a>
                             @endif
                         </td>
                       </tr>

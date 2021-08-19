@@ -30,3 +30,4 @@ Route::get('/selesaiPengajuan/{id}','Pengajuan@selesaiPengajuan');
 Route::get('/pengajuanselesai','Pengajuan@pengajuanselesai');
 Route::get('/tolakLaporan/{id}','Pengajuan@tolakLaporan');
 Route::get('/listSup','Suplier@listSup');
+Route::get('/nonAktif/{id}','Suplier@nonAktif');

@@ -80,4 +80,23 @@ class Suplier extends Controller
             return redirect('/masukAdmin')->with('gagal','Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');
         }
     }
+    public function nonAktif($id){
+        $token = Session::get('token');
+        $tokenDb = M_Admin::where('token', $token)->count();
+
+        if($tokenDb > 0){
+            if(M_Suplier::where('id_suplier', $id)->update(
+                [
+                    "status" => "0"
+                ]
+            )){
+                return redirect('/listSup')->with('berhasil','Data Berhasil di Update');                
+            }else{
+                return redirect('/listSup')->with('gagal','Data Gagal di Update');
+            }
+        }else{
+            return redirect('/masukAdmin')->with('gagal','Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');
+        }
+    }
+    
 }
