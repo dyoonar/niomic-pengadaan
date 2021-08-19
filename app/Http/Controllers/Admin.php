@@ -71,6 +71,7 @@ class Admin extends Controller
 
         if($tokenDb > 0){
             $data['admin'] = M_Admin::where('status','1')->paginate(15);
+            $data['adm'] = M_Admin::where('token', $token)->first();
             return view('admin.list',$data);
         }else{
             return redirect('/masukAdmin')->with('gagal','Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');

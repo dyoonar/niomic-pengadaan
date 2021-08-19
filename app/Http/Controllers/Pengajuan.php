@@ -43,6 +43,7 @@ class Pengajuan extends Controller
                 );
             }
             $data['pengajuan'] = $dataP;
+            $data['adm'] = M_Admin::where('token', $token)->first();
             return view('pengajuan.list', $data);
         }else{
             return redirect('/masukAdmin')->with('gagal','Anda silahkan login dahulu');
@@ -238,6 +239,7 @@ class Pengajuan extends Controller
                 }
             }
             $data['pengajuan'] = $dataP;
+            $data['adm'] = M_Admin::where('token', $token)->first();
             return view('admin.laporan', $data);
         }else{
             return redirect('/masukAdmin')->with('gagal','Anda silahkan login dahulu');

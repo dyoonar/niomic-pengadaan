@@ -35,13 +35,15 @@
 
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <div class="sidebar">
-        <!-- Sidebar Menu -->
 
-        @include('suplier.user')
-        @include('parsial.menu')
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user (optional) -->
+        @include('parsial.user')
+        <!-- Sidebar Menu -->
+        @include('parsial.menu');
         <!-- /.sidebar-menu -->
-    </div>
+      </div>
       <!-- /.sidebar -->
     </aside>
 

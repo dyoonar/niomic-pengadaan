@@ -75,6 +75,7 @@ class Suplier extends Controller
 
         if($tokenDb > 0){
             $data['suplier'] = M_Suplier::paginate(15);
+            $data['adm'] = M_Admin::where('token', $token)->first();
             return view('admin.listSup',$data);
         }else{
             return redirect('/masukAdmin')->with('gagal','Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');
