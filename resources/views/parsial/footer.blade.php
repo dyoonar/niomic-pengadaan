@@ -5,3 +5,4 @@
   <strong>Copyright &copy; {{date('Y')}} <a href="">Kristian</a>.</strong> All rights reserved.
 </footer>
 @include('suplier.ubahpassword')
+@include('admin.ubahpassword')
