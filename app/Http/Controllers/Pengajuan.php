@@ -162,6 +162,7 @@ class Pengajuan extends Controller
                 );
             }
             $data['pengajuan'] = $dataArr;
+            $data['sup'] = M_Suplier::where('token', $token)->first();
                 return view('suplier.riwayat_pengajuan', $data);
         }else{
             return redirect('/masukSuplier')->with('gagal', 'Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');
@@ -296,6 +297,7 @@ class Pengajuan extends Controller
                 );
             }
             $data['pengajuan'] = $dataArr;
+            $data['sup'] = M_Suplier::where('token', $token)->first();
                 return view('suplier.pengajuanselesai', $data);
         }else{
             return redirect('/masukSuplier')->with('gagal', 'Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');
