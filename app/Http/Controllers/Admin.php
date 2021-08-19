@@ -147,4 +147,29 @@ class Admin extends Controller
         }
         
     }
+    public function ubahPassword(Request $request){
+        $key = env('APP_KEY');
+        $token = Session::get('token');
+        $tokenDb = M_Admin::where('token', $token)->count();
+        if($tokenDb > 0){
+            $sup = M_Admin::where('token', $token)->first();
+            $decode = JWT::decode($token, $key, array('HS256'));
+            $decode_array = (array) $decode;
+            if(decrypt($sup->password) == $request->passwordlama){
+                if(M_Admin::where('id_admin', $decode_array['id_admin'])->update(
+                    [
+                        "password" => encrypt($request->password)
+                    ]
+                )){
+                    return redirect('/masukAdmin')->with('berhasil','Password Berhasil di Update');                
+                }else{
+                    return redirect('/pengajuan')->with('gagal','Password Gagal di Update');
+                }
+            }else{
+                return redirect('/pengajuan')->with('gagal','Password Gagal di Update, Password Lama tidak sama');
+            }
+        }else{
+            return redirect('/masukAdmin')->with('gagal','Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');
+        }
+    }
 }

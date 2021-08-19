@@ -33,3 +33,4 @@ Route::get('/listSup','Suplier@listSup');
 Route::get('/nonAktif/{id}','Suplier@nonAktif');
 Route::get('/Aktif/{id}','Suplier@Aktif');
 Route::post('/ubahPasswordSup','Suplier@ubahPassword');
+Route::post('/ubahPasswordAdm','Admin@ubahPassword');
