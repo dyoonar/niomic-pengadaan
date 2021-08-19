@@ -29,3 +29,4 @@ Route::get('/laporan','Pengajuan@laporan');
 Route::get('/selesaiPengajuan/{id}','Pengajuan@selesaiPengajuan');
 Route::get('/pengajuanselesai','Pengajuan@pengajuanselesai');
 Route::get('/tolakLaporan/{id}','Pengajuan@tolakLaporan');
+Route::get('/listSup','Suplier@listSup');

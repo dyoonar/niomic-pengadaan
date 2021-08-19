@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Encryption\DecryptException;
 
 use App\M_Suplier;
+use App\M_Admin;
 
 class Suplier extends Controller
 {
@@ -66,6 +67,17 @@ class Suplier extends Controller
             return redirect('/');
         } else {
             return redirect('/masukSuplier')->with('gagal', 'Anda gagal logout');
+        }
+    }
+    public function listSup(){
+        $token = Session::get('token');
+        $tokenDb = M_Admin::where('token', $token)->count();
+
+        if($tokenDb > 0){
+            $data['suplier'] = M_Suplier::paginate(15);
+            return view('admin.listSup',$data);
+        }else{
+            return redirect('/masukAdmin')->with('gagal','Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');
         }
     }
 }
