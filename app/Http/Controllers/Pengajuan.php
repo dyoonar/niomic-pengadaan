@@ -8,6 +8,7 @@ use \Firebase\JWT\JWT;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Storage;
 
 use App\M_Admin;
 use App\M_Pengajuan;
@@ -228,7 +229,8 @@ class Pengajuan extends Controller
                         "nama_suplier" => $sup->nama_usaha,
                         "email_suplier" => $sup->email,
                         "alamat_suplier" => $sup->alamat,
-                        "laporan" => $laporan->laporan
+                        "laporan" => $laporan->laporan,
+                        "id_laporan" => $laporan->id_laporan
                     );
                 }else{
                     
@@ -297,6 +299,31 @@ class Pengajuan extends Controller
                 return view('suplier.pengajuanselesai', $data);
         }else{
             return redirect('/masukSuplier')->with('gagal', 'Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');
+        }
+    }
+    public function tolakLaporan($id)
+    {
+
+        $token = Session::get('token');
+        $tokenDb = M_Admin::where('token', $token)->count();
+        if ($tokenDb > 0) {
+            $laporan = M_Laporan::where('id_laporan', $id)->count();
+            if ($laporan > 0) {
+                $dataLaporan = M_Laporan::where('id_laporan', $id)->first();
+                if (Storage::delete($dataLaporan->laporan)) {
+                    if (M_Laporan::where('id_laporan', $id)->delete()) {
+                        return redirect('/laporan')->with('berhasil', 'Laporan Berhasil di Tolak');
+                    } else {
+                        return redirect('/laporan')->with('gagal', 'Laporan Gagal di Tolak');
+                    }
+                } else {
+                    return redirect('/laporan')->with('gagal', 'Laporan Gagal di Hapus');
+                }
+            } else {
+                return redirect('/laporan')->with('gagal', 'Data Tidak Ditemukan');
+            }
+        } else {
+            return redirect('/masukAdmin')->with('gagal', 'Anda sudah Logout, silahkan login kembali untuk masuk aplikasi');
         }
     }
 }
