@@ -111,8 +111,10 @@
                         <td>{{$sup->alamat}}</td>
                         <td>{{$sup->no_npwp}}</td>
                         <td>
-                          <!-- <button data-toggle="modal" data-target="#ubahModal" type="button" class="btn btn-secondary ubah" data-id_admin="" data-nama="" data-email="" data-alamat=""><i class="fas fa-edit"></i> Edit</button>
-                          <a class="konfirmasi" href=""><button type="button" class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a> -->
+                          <a href="" class="btn btn-success konfirmasi"><i class="fas fa-check"></i> Verifikasi</a>
+                          <a href="" class="btn btn-danger konfirmasi"><i class="fas fa-time"></i> Tolak</a>
+                            <!-- <button data-toggle="modal" data-target="#ubahModal" type="button" class="btn btn-secondary ubah" data-id_admin="" data-nama="" data-email="" data-alamat=""><i class="fas fa-edit"></i> Edit</button>
+                            <a class="konfirmasi" href=""><button type="button" class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a> -->
 
                         </td>
                       </tr>
@@ -132,8 +134,6 @@
     </div>
     <!-- /.content-wrapper -->
     @include('parsial.footer')
-    @include('admin.tambah')
-    @include('admin.ubah')
     <!-- Control Sidebar -->
     <aside class="control-sidebar control-sidebar-dark">
       <!-- Control sidebar content goes here -->
@@ -199,7 +199,7 @@
       event.preventDefault();
       const url = $(this).attr('href');
 
-      var answer = window.confirm("Yakin akan dihapus?");
+      var answer = window.confirm("Yakin akan memproses data?");
       if (answer) {
         window.location.href = url;
       } else {
