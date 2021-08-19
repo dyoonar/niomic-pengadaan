@@ -7,7 +7,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="/tambahAdmin" method="post" role="form">
+      <form action="/ubahPasswordSup" method="post" role="form">
         {{csrf_field()}}
         <div class="modal-body">
 
