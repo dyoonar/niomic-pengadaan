@@ -111,11 +111,11 @@
                         <td>{{$sup->alamat}}</td>
                         <td>{{$sup->no_npwp}}</td>
                         <td>
-                          <a href="" class="btn btn-success konfirmasi"><i class="fas fa-check"></i> Verifikasi</a>
-                          <a href="" class="btn btn-danger konfirmasi"><i class="fas fa-time"></i> Tolak</a>
-                            <!-- <button data-toggle="modal" data-target="#ubahModal" type="button" class="btn btn-secondary ubah" data-id_admin="" data-nama="" data-email="" data-alamat=""><i class="fas fa-edit"></i> Edit</button>
-                            <a class="konfirmasi" href=""><button type="button" class="btn btn-danger"><i class="fas fa-trash"></i> Hapus</button></a> -->
-
+                            @if($sup->status == "0")
+                            <a href="" class="btn btn-success konfirmasi"><i class="fas fa-check"></i> Verifikasi</a>
+                            @else
+                            <a href="" class="btn btn-danger konfirmasi"><i class="fas fa-time"></i> Non Aktif</a>
+                            @endif
                         </td>
                       </tr>
                       @endforeach
